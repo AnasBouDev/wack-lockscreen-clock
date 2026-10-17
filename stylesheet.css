@@ -179,27 +179,75 @@
     font-size: 0 !important;
 }
 
+.unlock-dialog .wack-cupertino-rest .login-dialog-prompt-layout,
+.unlock-dialog .wack-cupertino-prompt .login-dialog-prompt-layout,
+.unlock-dialog .wack-cupertino-prompt.login-dialog-prompt-layout,
 .wack-cupertino-rest .login-dialog-prompt-layout,
 .wack-cupertino-prompt .login-dialog-prompt-layout,
 .wack-cupertino-prompt.login-dialog-prompt-layout {
-    width: 18em !important;
+    width: 22em !important;
+    max-width: 340px !important;
+    min-width: 280px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     spacing: 9px !important;
 }
 
 .wack-cupertino-prompt .login-dialog-button-box {
-    padding: 0.0875em 0.85em !important;
-    height: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 38px !important;
+    min-height: 38px !important;
+}
+
+.wack-cupertino-prompt .login-dialog-prompt-entry-area,
+.unlock-dialog .wack-cupertino-prompt .login-dialog-prompt-entry-area {
+    margin: 0 4px !important;
+    height: 38px !important;
+    min-height: 38px !important;
 }
 
 .wack-cupertino-rest .login-dialog-prompt-entry {
     opacity: 255 !important;
 }
 
+.unlock-dialog .wack-cupertino-prompt .login-dialog-prompt-entry,
 .wack-cupertino-prompt .login-dialog-prompt-entry {
-    font-size: 14px !important;
-    padding: 0px 9px !important;
+    font-size: 15px !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    padding: 6px 14px !important;
     border-radius: 9999px !important;
     border: none !important;
+    box-sizing: border-box !important;
+}
+
+.unlock-dialog .wack-cupertino-prompt .login-dialog-prompt-entry :ltr,
+.wack-cupertino-prompt .login-dialog-prompt-entry :ltr {
+    padding-right: 2.5em !important;
+}
+
+.unlock-dialog .wack-cupertino-prompt .login-dialog-prompt-entry :rtl,
+.wack-cupertino-prompt .login-dialog-prompt-entry :rtl {
+    padding-left: 2.5em !important;
+}
+
+.unlock-dialog .wack-cupertino-prompt .login-dialog-button.cancel-button,
+.wack-cupertino-prompt .login-dialog-button.cancel-button {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    margin: 0 2px !important;
+    border-radius: 9999px !important;
+}
+
+.unlock-dialog .wack-cupertino-prompt .login-dialog-button.cancel-button StIcon,
+.wack-cupertino-prompt .login-dialog-button.cancel-button StIcon {
+    icon-size: 16px !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 /* ── Action Buttons (A11y, Session, Auth) ─────────────────────────────────── */
