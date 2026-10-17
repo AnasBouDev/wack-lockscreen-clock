@@ -1,0 +1,63 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'          # triggers on any tag like v1.0, v1.2.3, etc.
+
+permissions:
+  contents: write     # needed to create GitHub Releases & upload assets
+
+jobs:
+  build-and-release:
+    name: Package & Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Read version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Build extension zip
+        id: zip
+        run: |
+          UUID="wack-lockscreen-clock@rinzler69-wastaken.github.com"
+          ZIP_NAME="${UUID}_${{ steps.version.outputs.VERSION }}.zip"
+
+          # Pack everything except git internals, CI config and dev files
+          zip -r "$ZIP_NAME" \
+            extension.js \
+            prefs.js \
+            stylesheet.css \
+            metadata.json \
+            src/ \
+            schemas/ \
+            locale/ \
+            LICENSE \
+            README.md \
+            --exclude "*.git*"
+
+          echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_OUTPUT"
+          echo "ZIP_PATH=$(pwd)/$ZIP_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "WACK Lockscreen Clock ${{ steps.version.outputs.VERSION }}"
+          body: |
+            ## Installation
+            1. Download the `.zip` below
+            2. Install via GNOME Extensions Manager or run:
+               ```bash
+               gnome-extensions install wack-lockscreen-clock@rinzler69-wastaken.github.com_${{ steps.version.outputs.VERSION }}.zip
+               ```
+            3. Enable the extension and restart GNOME Shell if needed
+
+            ## Compatibility
+            GNOME Shell 46 – 51 · Wayland & X11
+          files: ${{ steps.zip.outputs.ZIP_PATH }}
+          draft: false
+          prerelease: false
